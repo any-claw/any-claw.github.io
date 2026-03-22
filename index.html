@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>anyclaw — Agentic power for everyone</title>
+  <meta name="description" content="anyclaw gives your browser-based AI chat superpowers: local filesystem access, browser automation, scheduled tasks, persistent memory, and more — no technical setup required." />
+  <link rel="icon" href="assets/anyclaw-sq.png" type="image/png" />
+  <link rel="stylesheet" href="fonts.css" />
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="assets/anyclaw.png" alt="anyclaw" class="logo-img" />
+        <span class="logo-text">anyclaw</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">features</a>
+        <a href="#how-it-works">how it works</a>
+      </div>
+      <a href="#get-started" class="btn btn-primary btn-sm">interested?</a>
+      <button class="theme-toggle" aria-label="Toggle theme">☀</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-glow"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        open source · free to use
+      </div>
+      <h1 class="hero-headline">
+        give your <span id="hero-a-source">a</span>i chat<br />
+        <span class="accent"><em>real claws.</em></span>
+      </h1>
+      <p class="hero-sub">
+        supercharge your life with agentic capabilities from the browser AI chat tab you use
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary js-open-waitlist">
+          join waitlist
+        </button>
+        <a href="https://github.com/any-claw/any-claw" class="btn btn-ghost" target="_blank" rel="noopener">
+          view on GitHub
+        </a>
+      </div>
+      <div class="hero-compat">
+        works with
+        <span><img src="icons/chatgpt.ico" alt="" class="compat-logo" />ChatGPT</span>
+        <span><img src="icons/claude.ico" alt="" class="compat-logo" />Claude</span>
+        <span><img src="icons/gemini.ico" alt="" class="compat-logo" />Gemini</span>
+        <span><img src="icons/copilot.ico" alt="" class="compat-logo" />Copilot</span>
+        <span><img src="icons/grok.ico" alt="" class="compat-logo" />Grok</span>
+        <span>& more</span>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">scroll</div>
+  </section>
+
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-label">What anyclaw unlocks</div>
+      <h2 class="section-heading">
+        your ai chat, finally<br />capable of <em>real work.</em>
+      </h2>
+      <div class="features-grid">
+
+        <div class="feature-card feature-card--large">
+          <div class="feature-icon">
+            <svg class="feature-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 13C4 11.9 4.9 11 6 11H12.5L14.5 7H26C27.1 7 28 7.9 28 9V25C28 26.1 27.1 27 26 27H6C4.9 27 4 26.1 4 25Z"/>
+              <path d="M10 16.5H22"/><path d="M10 21H16.5"/>
+            </svg>
+          </div>
+          <h3>Local Filesystem</h3>
+          <p>Read and write files on your machine. Let your AI manage documents and organize folders -- all from the chat window.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg class="feature-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="6" width="26" height="20" rx="3"/>
+              <path d="M3 12H29"/>
+              <circle cx="7" cy="9" r="1.2" fill="currentColor" stroke="none"/>
+              <circle cx="11" cy="9" r="1.2" fill="currentColor" stroke="none"/>
+              <circle cx="15" cy="9" r="1.2" fill="currentColor" stroke="none"/>
+              <path d="M15 14L15 25L18 22L20.5 26.5L22 25.7L19.5 21.5L23.5 21.5Z"/>
+            </svg>
+          </div>
+          <h3>Browser Automation</h3>
+          <p>Control tabs, scrape pages, fill forms, click buttons. Your AI can browse the web on your behalf.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg class="feature-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 4 C18 3 21 3 22 6 C24 4 27 6 27 9 C29 10 29 14 27 16 C29 18 27 22 25 23 C25 26 22 28 19 27 C18 29 15 29 13 27 C10 28 7 26 7 23 C5 22 3 18 5 16 C3 14 3 10 5 9 C5 6 8 4 10 6 C11 3 14 3 16 4 Z"/>
+              <line x1="16" y1="4" x2="16" y2="27"/>
+              <path d="M13 8 C11 10 11 13 13 14"/>
+              <path d="M9 15 C11 17 11 20 9 21"/>
+              <path d="M12 22 C10 23 10 25 12 26"/>
+              <path d="M19 8 C21 10 21 13 19 14"/>
+              <path d="M23 15 C21 17 21 20 23 21"/>
+              <path d="M20 22 C22 23 22 25 20 26"/>
+            </svg>
+          </div>
+          <h3>Persistent Memory</h3>
+          <p>anyclaw remembers context across sessions. Your preferences, projects, and history stay intact -- no more repeating yourself.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg class="feature-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="6" width="26" height="20" rx="3"/>
+              <path d="M3 12H29"/>
+              <path d="M8 16.5L13 19.5L8 22"/>
+              <path d="M15 22H22"/>
+            </svg>
+          </div>
+          <h3>Program/Script Execution</h3>
+          <p>Run programs, scripts, more directly from the chat. Automate anything your computer can do.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg class="feature-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="16" cy="17" r="12"/>
+              <path d="M16 9V11"/><path d="M16 23V25"/>
+              <path d="M8 17H10"/><path d="M22 17H24"/>
+              <path d="M16 17L20 12.5"/>
+              <path d="M16 17L16 10.5"/>
+              <circle cx="16" cy="17" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <h3>Scheduled Tasks</h3>
+          <p>Tell your AI to "remind me every Monday" or "check this site daily". anyclaw handles recurring automation for you.</p>
+        </div>
+
+        <div class="feature-card feature-card--large">
+          <div class="feature-icon">
+            <svg class="feature-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="2" width="16" height="7" rx="2"/>
+              <path d="M16 9V13"/><path d="M13.5 11.5L16 14L18.5 11.5"/>
+              <rect x="8" y="14" width="16" height="7" rx="2"/>
+              <path d="M16 21V25"/><path d="M13.5 23.5L16 26L18.5 23.5"/>
+              <rect x="8" y="26" width="16" height="5" rx="2"/>
+            </svg>
+          </div>
+          <h3>Workflow Builder</h3>
+          <p>Chain actions into automated pipelines. Create, save, and reuse multi-step workflows without writing a single line of code.</p>
+          <div class="workflow-demo">
+            <div class="workflow-step">
+              <span class="step-num">1</span>
+              <span>Read inbox emails</span>
+            </div>
+            <div class="workflow-arrow">↓</div>
+            <div class="workflow-step">
+              <span class="step-num">2</span>
+              <span>Summarize with AI</span>
+            </div>
+            <div class="workflow-arrow">↓</div>
+            <div class="workflow-step">
+              <span class="step-num">3</span>
+              <span>Save to daily notes</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg class="feature-icon-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 6 L12 6 Q16 12 20 6 L26 6 L26 12 Q32 16 26 20 L26 26 L20 26 Q16 32 12 26 L6 26 Z"/>
+            </svg>
+          </div>
+          <h3>Skills & Plugins</h3>
+          <p>Extend anyclaw with community-built plugins. Add new capabilities in one click -- no configuration needed.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-label">No technical setup. Just power.</div>
+      <h2 class="section-heading">built for <em>everyone,</em><br />not just developers.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Install the extension</h3>
+            <p>Download anyclaw to your computer and run it to see installation instructions. No accounts required.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Open your AI chat</h3>
+            <p>Navigate to ChatGPT, Claude, Gemini, or any other supported browser-based AI.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Start doing more</h3>
+            <p>anyclaw works automatically. Grant the permissions you want and your AI gains real-world capabilities instantly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="get-started">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-badge">free & open source</div>
+        <h2 class="cta-heading">ready to give your ai<br /><em>real claws?</em></h2>
+        <p class="cta-sub">the power of a developer agent, the simplictiy and comfort of the browser chat tab you already use.</p>
+        <div class="cta-actions">
+          <button class="btn btn-primary btn-lg js-open-waitlist">
+            join waitlist
+          </button>
+          <a href="https://github.com/any-claw/any-claw" class="btn btn-outline btn-lg" target="_blank" rel="noopener">
+            star on GitHub ☆
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORDMARK + FOOTER clipped together -->
+  <div class="page-bottom">
+    <div class="wordmark-wrap">
+      <div class="wordmark-sticky">
+        <span class="wordmark-text">anyclaw</span>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/anyclaw.png" alt="anyclaw" class="logo-img" />
+        <span class="logo-text">anyclaw</span>
+        <span class="footer-tagline">Agentic power for everyone.</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://x.com/b04zy" target="_blank" rel="noopener">X</a>
+        <a href="https://github.com/any-claw" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+  </div>
+
+  <img src="assets/anyclaw.png" alt="" class="hero-peek-logo hero-peek-left" aria-hidden="true" />
+  <img src="assets/anyclaw.png" alt="" class="hero-peek-logo hero-peek-right" aria-hidden="true" />
+
+  <div class="float-bubble" id="float-bubble" aria-hidden="true">
+    <span class="float-letter">a</span>
+    <img class="float-logo-img" src="assets/anyclaw.png" alt="" />
+  </div>
+
+  <!-- WAITLIST MODAL -->
+  <div class="modal-backdrop" id="waitlist-modal" role="dialog" aria-modal="true" aria-label="Join waitlist">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+      <iframe data-tally-src="https://tally.so/embed/XxqKjO?alignLeft=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="414" frameborder="0" marginheight="0" marginwidth="0" title="excited about anyclaw?"></iframe>
+    </div>
+  </div>
+  <script src="tally-embed.js" onload="typeof Tally!=='undefined'&&Tally.loadEmbeds()"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
