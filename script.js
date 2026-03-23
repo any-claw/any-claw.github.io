@@ -90,16 +90,34 @@ function updateWordmark() {
 window.addEventListener('scroll', updateWordmark, { passive: true });
 updateWordmark();
 
-// Randomise peek logo position each cycle
-document.querySelectorAll('.hero-peek-logo').forEach(el => {
-  el.addEventListener('animationiteration', () => {
-    if (el.classList.contains('hero-peek-top') || el.classList.contains('hero-peek-bottom')) {
-      el.style.left = (25 + Math.random() * 50) + '%';
-    } else {
-      el.style.top = (25 + Math.random() * 40) + '%';
-    }
-  });
-});
+// Peek logos: one at a time, random edge, random interval (2–7s)
+const peekLogos = [...document.querySelectorAll('.hero-peek-logo')];
+const peekAnimMap = {
+  'hero-peek-left':   'peek-from-left',
+  'hero-peek-right':  'peek-from-right',
+  'hero-peek-top':    'peek-from-top',
+  'hero-peek-bottom': 'peek-from-bottom',
+};
+
+function peekNext() {
+  const el = peekLogos[Math.floor(Math.random() * peekLogos.length)];
+  const animClass = Object.keys(peekAnimMap).find(cls => el.classList.contains(cls));
+  const animName = peekAnimMap[animClass];
+
+  if (animName === 'peek-from-top' || animName === 'peek-from-bottom') {
+    el.style.left = (20 + Math.random() * 60) + '%';
+  } else {
+    el.style.top = (20 + Math.random() * 50) + '%';
+  }
+
+  el.style.animation = `${animName} 1.4s ease-in-out`;
+  el.addEventListener('animationend', () => {
+    el.style.animation = '';
+    setTimeout(peekNext, 2000 + Math.random() * 3000);
+  }, { once: true });
+}
+
+setTimeout(peekNext, 2000 + Math.random() * 3000);
 
 // Grid cell logo hover
 function setupGridHover(container, cellSize, avoidContent = false) {
@@ -165,65 +183,3 @@ if (ctaSection) setupGridHover(ctaSection, 60);
 
 document.querySelectorAll('.feature-card').forEach(card => setupGridHover(card, 40, true));
 
-// Floating "a" → logo morph
-const heroASource = document.getElementById('hero-a-source');
-const floatBubble = document.getElementById('float-bubble');
-const floatLetter = floatBubble?.querySelector('.float-letter');
-const floatLogoImg = floatBubble?.querySelector('.float-logo-img');
-
-if (heroASource && floatBubble) {
-  function updateFloatBubble() {
-    const scrollY = window.scrollY;
-    const docH = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docH > 0 ? scrollY / docH : 0;
-
-    const vh = window.innerHeight;
-    const vw = window.innerWidth;
-    const heroEl = document.querySelector('.hero');
-    const heroH = heroEl ? heroEl.offsetHeight : vh;
-
-    // Appear immediately on scroll, but ease in gradually over 30% of hero height
-    const enterProgress = Math.max(0, Math.min(1, scrollY / (heroH * 0.3)));
-
-    if (enterProgress <= 0) {
-      floatBubble.style.opacity = '0';
-      floatBubble.classList.remove('drifting');
-      return;
-    }
-
-    floatBubble.style.opacity = String(Math.min(1, enterProgress * 2));
-    floatBubble.classList.add('drifting');
-
-    // Start position: exact location of the "a" in the hero (viewport coords)
-    const sourceRect = heroASource.getBoundingClientRect();
-    const startX = sourceRect.left;
-    const startY = sourceRect.top;
-
-    // Target wandering position
-    const targetX = vw * 0.5 + Math.sin(progress * Math.PI * 5) * vw * 0.28 - 40;
-    const yWander = Math.cos(progress * Math.PI * 3) * vh * 0.2;
-    const yDrift = vh * (0.2 + progress * 0.35);
-    const targetY = Math.max(vh * 0.05, Math.min(vh * 0.82, yDrift + yWander));
-
-    // Lerp from hero source position to wandering position
-    const ease = enterProgress < 1 ? enterProgress * enterProgress * (3 - 2 * enterProgress) : 1;
-    const x = startX + (targetX - startX) * ease;
-    const y = startY + (targetY - startY) * ease;
-
-    floatBubble.style.left = x + 'px';
-    floatBubble.style.top = y + 'px';
-
-    // Morph: letter → logo in last 28% of page
-    const morphStart = 0.72;
-    const morphProgress = Math.max(0, Math.min(1, (progress - morphStart) / (1 - morphStart)));
-
-    if (floatLetter) floatLetter.style.opacity = String(1 - morphProgress);
-    if (floatLogoImg) {
-      floatLogoImg.style.opacity = String(morphProgress);
-      floatLogoImg.style.transform = `scale(${0.2 + morphProgress * 0.8})`;
-    }
-  }
-
-  window.addEventListener('scroll', updateFloatBubble, { passive: true });
-  updateFloatBubble();
-}
