@@ -90,12 +90,80 @@ function updateWordmark() {
 window.addEventListener('scroll', updateWordmark, { passive: true });
 updateWordmark();
 
-// Randomise peek logo vertical position each cycle
+// Randomise peek logo position each cycle
 document.querySelectorAll('.hero-peek-logo').forEach(el => {
   el.addEventListener('animationiteration', () => {
-    el.style.top = (30 + Math.random() * 30) + '%';
+    if (el.classList.contains('hero-peek-top') || el.classList.contains('hero-peek-bottom')) {
+      el.style.left = (25 + Math.random() * 50) + '%';
+    } else {
+      el.style.top = (25 + Math.random() * 40) + '%';
+    }
   });
 });
+
+// Grid cell logo hover
+function setupGridHover(container, cellSize, avoidContent = false) {
+  let current = null;
+  let lastCol = -1, lastRow = -1;
+  const logoSize = Math.round(cellSize * 0.55);
+
+  function fadeOut(el) {
+    el.classList.add('fading');
+    setTimeout(() => el.remove(), 1000);
+  }
+
+  function spawnLogo(col, row) {
+    const el = document.createElement('img');
+    el.src = 'assets/anyclaw.png';
+    el.className = 'grid-cell-logo';
+    el.style.width = logoSize + 'px';
+    el.style.height = logoSize + 'px';
+    el.style.left = (col * cellSize + cellSize / 2) + 'px';
+    el.style.top  = (row * cellSize + cellSize / 2) + 'px';
+    el.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 60 - 30}deg)`;
+    container.appendChild(el);
+    return el;
+  }
+
+  container.addEventListener('mousemove', e => {
+    const rect = container.getBoundingClientRect();
+    const col = Math.floor((e.clientX - rect.left) / cellSize);
+    const row = Math.floor((e.clientY - rect.top) / cellSize);
+
+    if (avoidContent) {
+      const elUnder = document.elementFromPoint(e.clientX, e.clientY);
+      const overContent = elUnder && elUnder !== container
+        && container.contains(elUnder)
+        && !elUnder.classList.contains('grid-cell-logo');
+      if (overContent) {
+        if (current) { fadeOut(current); current = null; }
+        lastCol = -1; lastRow = -1;
+        return;
+      }
+    }
+
+    if (col === lastCol && row === lastRow) return;
+    lastCol = col;
+    lastRow = row;
+
+    if (current) fadeOut(current);
+    current = spawnLogo(col, row);
+  });
+
+  container.addEventListener('mouseleave', () => {
+    if (current) { fadeOut(current); current = null; }
+    lastCol = -1;
+    lastRow = -1;
+  });
+}
+
+const heroSection = document.querySelector('.hero');
+if (heroSection) setupGridHover(heroSection, 60);
+
+const ctaSection = document.querySelector('.cta');
+if (ctaSection) setupGridHover(ctaSection, 60);
+
+document.querySelectorAll('.feature-card').forEach(card => setupGridHover(card, 40, true));
 
 // Floating "a" → logo morph
 const heroASource = document.getElementById('hero-a-source');
